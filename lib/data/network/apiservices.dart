@@ -160,4 +160,28 @@ class ApiServices {
       return Left(BadRequestException());
     }
   }
+
+
+    static EitherResponse<Map> putApi(String url, var rawData) async {
+    Map fetchedData = {};
+    final uri = Uri.parse(url);
+    final body = jsonEncode(rawData);
+    try {
+      print("$body is this body ? ------------------------\n$uri uri -------------------------------------,\n$_headers headers --------------");
+      final response = await http.put(uri, body: body, headers: _headers);
+      print('row data ----------------put------------response');
+      print(response.body);
+      fetchedData = _getResponse(response);
+
+      return Right(fetchedData);
+    } on SocketException {
+      print('socket ');
+      return Left(InternetException());
+    } on http.ClientException {
+      return Left(RequestTimeOUtException());
+    } catch (e) {
+      print(e);
+      return Left(BadRequestException());
+    }
+  }
 }

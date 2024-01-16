@@ -12,7 +12,7 @@ class BookingRepo {
 
   EitherResponse saveservicer(serviceid) async {
     return await ApiServices.savedpostApi(
-        AppUrl.saveddata + 'user_id=$userId&servicer_id=$serviceid');
+        '${AppUrl.saveddata}user_id=$userId&servicer_id=$serviceid');
   }
 
   EitherResponse removeServicer(savedid) async {
@@ -24,9 +24,34 @@ class BookingRepo {
     return await ApiServices.getApi(AppUrl.getSaved + userId.toString());
   }
 
+  EitherResponse getPopular() async {
+    const url = AppUrl.popularService;
+    return await ApiServices.getApi(url + userId.toString());
+  }
 
-   EitherResponse getPopular()async{
-    const url=AppUrl.popularService;
-    return await ApiServices.getApi(url+userId.toString());
-   }
+  EitherResponse getElectritions() async {
+    return await ApiServices.getApi(AppUrl.getElectritions);
+  }
+  
+  EitherResponse getpaintings() async {
+    return await ApiServices.getApi(AppUrl.getpainting);
+  }
+    EitherResponse getcleaning() async {
+    return await ApiServices.getApi(AppUrl.getcleaning);
+  }
+
+  EitherResponse getcooking()async{
+    return await ApiServices.getApi(AppUrl.getcooking);
+  }
+  EitherResponse getothers()async{
+    return await ApiServices.getApi(AppUrl.getothers);
+  }
+
+
+  EitherResponse updateProfile(var rawData)async{
+    return await ApiServices.putApi(AppUrl.updateProfile+userId.toString(), rawData);
+  }
+    EitherResponse getAllServicers()async{
+    return await ApiServices.getApi(AppUrl.getAllservicers);
+  }
 }

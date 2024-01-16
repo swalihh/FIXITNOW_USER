@@ -5,7 +5,7 @@ sealed class BookinglistState {}
 final class BookinglistInitial extends BookinglistState {}
 
 class FetchBookingSuccessState extends BookinglistState {
-  final List<BookingModel> bookings;
+  final List<ServicersModel> bookings;
 
   FetchBookingSuccessState({required this.bookings});
 }

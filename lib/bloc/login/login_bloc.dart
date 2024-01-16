@@ -16,8 +16,8 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
   FutureOr<void> loginUser(
       UserLoginEvent event, Emitter<LoginState> emit) async {
     emit(UserLoginIsLoadingState());
-    print(event.email);
-    print(event.password);
+    // print(event.email);
+    // print(event.password);
     final userData = {"email": event.email, "password": event.password};
     final data = await AuthRepo().userLogin(userData);
 

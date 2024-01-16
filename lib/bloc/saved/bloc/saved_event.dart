@@ -5,7 +5,7 @@ abstract class SavedEvent {}
 class AddToSavedEvent extends SavedEvent {
   final dynamic id;
 
-  AddToSavedEvent({required this.id});
+  AddToSavedEvent({required this.id,});
 }
 
 class GetSavedEvent extends SavedEvent {}

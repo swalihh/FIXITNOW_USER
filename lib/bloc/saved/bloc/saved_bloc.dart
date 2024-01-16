@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:userapp/models/savedmodel.dart';
 import 'package:userapp/repositories/bookingrepo.dart';
@@ -13,36 +12,39 @@ class SavedBloc extends Bloc<SavedEvent, SavedState> {
     on<RemoveFromEvent>(remove);
     on<GetSavedEvent>(getsaved);
   }
-  List<SavedModel> saveds = [];
+  List<SavedModel> saveds = []; 
 
    FutureOr<void> getsaved(GetSavedEvent event, Emitter<SavedState> emit) async {
     final details = await BookingRepo().getSaved();
     details.fold((left) => emit(GetSavedErrorState()), (responce) {
-      if (responce['data'] != null) {
-        final List savedList = responce['data'];
+    
+         List savedList =[];
+    savedList   = responce['data']??[];
         saveds = savedList.map((e) => SavedModel.fromJson(e)).toList();
-        emit(GetSavedDataSuccessState(savedList: saveds));
-      } else {
+        emit(GetSavedDataSuccessState(savedList: saveds));   
       
-      }
+    
     });
   }
 
   FutureOr<void> saved(AddToSavedEvent event, Emitter<SavedState> emit) async {
+  
     final details = await BookingRepo().saveservicer(event.id);
     details.fold((left) => emit(SavedDataErrorState()), (responce) {
-      emit(SavedDataSuccessState());
+      emit(SavedDataSuccessState()); 
+       add(GetSavedEvent());
+       emit(GetSavedDataSuccessState(savedList: saveds));  
     });
   }
 
 //==================================remove======================================
   FutureOr<void> remove(RemoveFromEvent event, Emitter<SavedState> emit) async {
+       saveds.removeWhere((element) => element.wishlistId==event.savedid);
+      emit(GetSavedDataSuccessState(savedList: saveds));
     final details = await BookingRepo().removeServicer(event.savedid);
     details.fold((left) => emit(SavedDataRemoveErrorState()), (responce) {
      
-
-      saveds.removeWhere((element) => element.wishlistId==event.savedid);
-      emit(GetSavedDataSuccessState(savedList: saveds));
+    
     });
   }
 

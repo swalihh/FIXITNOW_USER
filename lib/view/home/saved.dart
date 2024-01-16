@@ -6,6 +6,9 @@ import 'package:userapp/resources/constant/textstyle.dart';
 import 'package:userapp/resources/strings/hometext.dart';
 import 'package:userapp/resources/widgets/catogoriescard.dart';
 import 'package:userapp/resources/widgets/customappbar.dart';
+import 'package:userapp/resources/widgets/saved/job_detail_forsaved.dart';
+import 'package:userapp/resources/widgets/saved/savedview.dart';
+
 
 class Saved extends StatelessWidget {
   const Saved({super.key});
@@ -41,6 +44,11 @@ class Saved extends StatelessWidget {
                     final saved = state.savedList[index];
 
                     return CategoriesCard(
+                       onTap: () {
+                        Navigator.of(context).push(MaterialPageRoute(builder: (context) {
+                         return  Savedview(servicers: saved,index: index,);
+                        },));
+                       },
                       amount: saved.amount.toString(),
                       imageUrl: saved.servicerImage,
                       jobName: saved.serviceCategory,

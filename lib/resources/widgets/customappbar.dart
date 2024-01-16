@@ -7,6 +7,11 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   final Color backgroundColor;
   final double elevation;
   final String? rightText;
+  final List<PopupMenuEntry<String>> popupMenuEntries;
+  final VoidCallback? onEditPressed;
+
+  // Add a boolean flag to control the visibility of the PopupMenuButton
+  final bool showPopupMenuButton;
 
   const CustomAppBar({
     Key? key,
@@ -15,6 +20,9 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
     required this.backgroundColor,
     this.elevation = 0,
     this.rightText,
+    this.popupMenuEntries = const [],
+    this.onEditPressed,
+    this.showPopupMenuButton = false, // Set default to false
   }) : super(key: key);
 
   @override
@@ -31,9 +39,20 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
             child: Center(
               child: Text(
                 rightText!,
-                style:AppText.appname
+                style: AppText.appname,
               ),
             ),
+          ),
+        // Conditionally show the PopupMenuButton based on the flag
+        if (showPopupMenuButton)
+          PopupMenuButton<String>(
+            clipBehavior: Clip.hardEdge,
+            onSelected: (value) {
+              if (value == 'Search' && onEditPressed != null) {
+                onEditPressed!();
+              }
+            },
+            itemBuilder: (context) => popupMenuEntries,
           ),
       ],
     );

@@ -1,5 +1,5 @@
 class AppUrl {
-  static const String _baseUrl = 'http://10.4.5.107:5000/user';
+  static const String _baseUrl = 'https://fixitnow.website/user';
   static const String userSignup = '$_baseUrl/signup';
   static const String userdetails = '$_baseUrl/getdetails/';
   static const String userLogin = '$_baseUrl/login';
@@ -10,4 +10,13 @@ class AppUrl {
   static const String getSaved = '$_baseUrl/getsaved/';
   static const String removeSaved = '$_baseUrl/saved/';
   static const String popularService = '$_baseUrl/popularservicer/';
+  static const String getElectritions = '$_baseUrl/electritians';
+  static const String getpainting = '$_baseUrl/painting';
+  static const String getcleaning = '$_baseUrl/cleaning';
+  static const String getcooking = '$_baseUrl/cooking';
+  static const String getothers = '$_baseUrl/others';
+  static const String updateProfile = '$_baseUrl/update/';
+  static const String getAllservicers = '$_baseUrl/serivicers';
+
+
 }

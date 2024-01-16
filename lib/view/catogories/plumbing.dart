@@ -7,6 +7,7 @@ import 'package:userapp/resources/constant/textstyle.dart';
 import 'package:userapp/resources/widgets/catogoriescard.dart';
 import 'package:userapp/resources/widgets/customappbar.dart';
 import 'package:userapp/view/catogories/book/servicerview.dart';
+import 'package:userapp/view/home/search.dart';
 
 // ignore: must_be_immutable
 class Plumbing extends StatelessWidget {
@@ -24,7 +25,16 @@ class Plumbing extends StatelessWidget {
           title: Text(
             'Plumbing',
             style: AppText.labeltext,
+          
           ),
+        popupMenuEntries: const [
+          PopupMenuItem(value: 'Search', child: Text('Search')),
+        ],
+        showPopupMenuButton: true,
+        onEditPressed: () {
+          Navigator.of(context).push(MaterialPageRoute(builder: (context) => SearchPage(),));
+        },
+          
         ),
         backgroundColor: AppColors.primaryColor,
         body: Padding(
@@ -57,39 +67,19 @@ class Plumbing extends StatelessWidget {
                       }
 
                       return CategoriesCard(
+
                         amount: '₹ ${state.servicers[index].amount.toString()}',
                         imageUrl: state.servicers[index].servicerImage,
                         jobName: state.servicers[index].serviceCategory,
                         name: state.servicers[index].username,
                         onTap: () {
+                            context.read<SavedBloc>().add(GetSavedEvent());
                           Navigator.of(context).push(MaterialPageRoute(
                             builder: (context) =>
-                                ServicerBook(servicers: services),
+                                ServicerBook(servicers: services,index: index),
                           ));
                         },
-                        dynamicWidgets: [
-                          InkWell(
-                            onTap: () {
-                              issavedList[index].value =
-                                  !issavedList[index].value;
-                              if (issavedList[index].value) {
-                                context
-                                    .read<SavedBloc>()
-                                    .add(AddToSavedEvent(id: services.id));
-                               
-                              } else {}
-                            },
-                            child: ValueListenableBuilder(
-                              valueListenable: issavedList[index],
-                              builder: (context, value, child) => Icon(
-                                issavedList[index].value
-                                    ? Icons.bookmark
-                                    : Icons.bookmark_border_outlined,
-                                color: AppColors.whiteColor,
-                              ),
-                            ),
-                          )
-                        ],
+                      
                       );
                     },
                   );

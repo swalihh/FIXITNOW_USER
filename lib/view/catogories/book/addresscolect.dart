@@ -10,6 +10,7 @@ import 'package:userapp/resources/widgets/customelevatedbutton.dart';
 import 'package:userapp/resources/widgets/customtextfield.dart';
 import 'package:userapp/resources/widgets/descriptiontextfield.dart';
 import 'package:userapp/resources/widgets/textfieldspace.dart';
+import 'package:userapp/utils/Customsnackbar.dart';
 import 'package:userapp/utils/calender.dart';
 import 'package:userapp/utils/validations.dart';
 import 'package:userapp/view/home/bottomnavigaton.dart';
@@ -103,7 +104,8 @@ class _AdressTakingState extends State<AdressTaking> {
                 BlocConsumer<BookingBloc, BookingState>(
                   listener: (context, state) {
                     if(state is ServiceBookingSuccessState){
-                      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Successfuly Booked ',style: AppText.averagewhite,)));
+                  CustomSnackBar.showCustomSnackBar(context, 'Successfully Booked');
+
                      context.read<BookinglistBloc>().add(GetAllBookingDetailsEvent());
 
                       Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => Start(),));
@@ -148,7 +150,7 @@ class _AdressTakingState extends State<AdressTaking> {
     }
   }
   String formatDate(DateTime date) {
-  final DateFormat formatter = DateFormat('dd-MM-yyyy'); // Customize the format as needed
+  final DateFormat formatter = DateFormat('yyyy-MM-dd'); // Customize the format as needed
   return formatter.format(date).toString();
 }
 }

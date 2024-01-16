@@ -4,6 +4,7 @@ import 'package:userapp/bloc/bookinglist/bloc/bookinglist_bloc.dart';
 import 'package:userapp/bloc/login/login_bloc.dart';
 import 'package:userapp/bloc/plumbing/plumbing_bloc.dart';
 import 'package:userapp/bloc/saved/bloc/saved_bloc.dart';
+import 'package:userapp/bloc/servicers/bloc/servicers_bloc.dart';
 import 'package:userapp/bloc/signup/bloc/signup_bloc.dart';
 import 'package:userapp/resources/constant/colors.dart';
 import 'package:userapp/resources/constant/textstyle.dart';
@@ -13,6 +14,7 @@ import 'package:userapp/resources/widgets/customtextfield.dart';
 import 'package:userapp/resources/widgets/loadingbutton.dart';
 import 'package:userapp/resources/widgets/loginimage.dart';
 import 'package:userapp/resources/widgets/textfieldspace.dart';
+import 'package:userapp/utils/customsnackbar.dart';
 import 'package:userapp/utils/validations.dart';
 import 'package:userapp/view/home/bottomnavigaton.dart';
 import 'package:userapp/view/signup/otp.dart';
@@ -21,9 +23,7 @@ class Register extends StatelessWidget {
   Register({Key? key}) : super(key: key);
   TextEditingController nameController = TextEditingController();
   TextEditingController mailController = TextEditingController();
-
   TextEditingController phoneController = TextEditingController();
-
   TextEditingController passwordController = TextEditingController();
   TextEditingController loginPasswordcontroller = TextEditingController();
   TextEditingController loginMailcontroller = TextEditingController();
@@ -106,7 +106,8 @@ class Register extends StatelessWidget {
                                 BlocConsumer<LoginBloc, LoginState>(
                                   listener: (context, state) {
                                     if (state is UserLoginErrorState) {
-                                      print(state.message);
+                                      CustomSnackBar.showCustomSnackBar(
+                                          context, state.message);
                                     } else if (state is UserLoginSuccessState) {
                                       context
                                           .read<PlumbingBloc>()
@@ -117,6 +118,9 @@ class Register extends StatelessWidget {
                                       context
                                           .read<SavedBloc>()
                                           .add(GetSavedEvent());
+                                      context
+                                          .read<ServicersBloc>()
+                                          .add(FetchAllServicersEvent());
 
                                       Navigator.of(context)
                                           .pushReplacement(MaterialPageRoute(
@@ -131,8 +135,6 @@ class Register extends StatelessWidget {
                                       showloader: isLoading,
                                       onPressed: () {
                                         if (loginKey.currentState!.validate()) {
-                                          print(
-                                              " password --------${passwordController.text}email -------------${mailController.text}");
                                           context.read<LoginBloc>().add(
                                               UserLoginEvent(
                                                   password:
@@ -226,7 +228,8 @@ class Register extends StatelessWidget {
                                       builder: (context) => Otp(),
                                     ));
                                   } else if (state is SignupErrorState) {
-                                    print(state.message);
+                                    CustomSnackBar.showCustomSnackBar(
+                                        context, state.message);
                                   }
                                 },
                                 builder: (context, state) {

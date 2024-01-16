@@ -1,4 +1,4 @@
 part of 'electrition_bloc.dart';
 
-@immutable
-sealed class ElectritionEvent {}
+abstract class ElectritionEvent {}
+class GetAllElectritonsEvent extends ElectritionEvent{}

@@ -4,10 +4,18 @@ abstract class SearchState {}
 
 final class SearchInitial extends SearchState {}
 
-final class GetSearchSuccessState extends SearchState{
- final  List <ServicersModel>servicersFilterdList;
+final class SearchFoundState extends SearchState {
+  final List<ServicersModel> filteredServicers;
 
-  GetSearchSuccessState({required this.servicersFilterdList});
+  SearchFoundState({required this.filteredServicers});
 }
 
+final class SearchNotFoundState extends SearchState {}
+
+final class SearchShowAllServicersState extends SearchState {
+  final List<ServicersModel> totalServicers;
+
+  SearchShowAllServicersState({required this.totalServicers
+  });
+}
 

@@ -84,7 +84,7 @@ class Otp extends StatelessWidget {
                         ));
                       } else if (state is OtpNotMatchedState) {
                         ScaffoldMessenger.of(context).showSnackBar(
-                            SnackBar(content: Text('not matched')));
+                            const SnackBar(content: Text('not matched')));
                       }
                     },
                     child: CustomElevatedButton(

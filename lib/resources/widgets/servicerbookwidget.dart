@@ -1,7 +1,9 @@
-
-import 'package:flutter/material.dart';
+import 'package:flutter/material.dart'; 
+import 'package:userapp/models/savedmodel.dart';
+import 'package:userapp/models/servicemodels.dart';
 import 'package:userapp/resources/constant/colors.dart';
 import 'package:userapp/resources/constant/textstyle.dart';
+import 'package:userapp/resources/widgets/book_mark_widget.dart';
 
 class JobDetailsWidget extends StatelessWidget {
   final String jobName;
@@ -9,9 +11,17 @@ class JobDetailsWidget extends StatelessWidget {
   final String location;
   final String amount;
   final String imageUrl;
+  final ServicersModel? servicers;
+  final List<SavedModel>? savedModel;
 
-  const JobDetailsWidget({
+  ValueNotifier<bool> savedVisibility = ValueNotifier(false);
+  int index;
+
+  JobDetailsWidget({
+   required this.savedModel,
     Key? key,
+    required this.servicers,
+    required this.index,
     required this.jobName,
     required this.name,
     required this.location,
@@ -121,8 +131,10 @@ class JobDetailsWidget extends StatelessWidget {
                       padding: const EdgeInsets.only(right: 15, bottom: 15),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.end,
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: [
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [          
+                          // book mark widget 
+                              BookMarkWidget(savedList:savedModel! ,serviceModel: servicers!,),                
                           Container(
                             width: screenSize.width * 0.1 + 40,
                             height: screenSize.height * 0.04,

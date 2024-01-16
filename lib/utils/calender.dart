@@ -76,7 +76,7 @@ class CalendarPickerState extends State<CalendarPicker> {
   }
 
   String _formatDate(DateTime date) {
-    final DateFormat formatter = DateFormat('dd MM yyyy');
+    final DateFormat formatter = DateFormat('dd -MM- yyyy');
     return formatter.format(date);
   }
 }

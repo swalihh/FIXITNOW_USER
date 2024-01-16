@@ -1,21 +1,25 @@
 import 'package:flutter/material.dart';
-import 'package:userapp/models/bookimgsmodel.dart';
+import 'package:userapp/models/servicemodels.dart';
 import 'package:userapp/resources/constant/colors.dart';
 import 'package:userapp/resources/constant/textstyle.dart';
 import 'package:userapp/resources/widgets/customappbar.dart';
+import 'package:userapp/resources/widgets/customelevatedbutton.dart';
 import 'package:userapp/resources/widgets/servicerbookwidget.dart';
 import 'package:userapp/resources/widgets/textfieldspace.dart';
 
 class BookingDetails extends StatelessWidget {
-  final BookingModel servicers;
+  final ServicersModel servicers;
+  int index;
 
-  const BookingDetails({Key? key, required this.servicers}) : super(key: key);
+   BookingDetails({Key? key, required this.servicers,required this.index
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.primaryColor,
-      appBar: const CustomAppBar(
+      appBar:  CustomAppBar(
+        
         backgroundColor: AppColors.primaryColor,
       ),
       body: Padding(
@@ -25,6 +29,10 @@ class BookingDetails extends StatelessWidget {
             Stack(
               children: [
                 JobDetailsWidget(
+                  servicers: servicers,
+                  savedModel: [],
+            
+                  index: index,
                   jobName: servicers.serviceCategory,
                   amount: '₹${servicers.serviceAmount.toString()}',
                   location: servicers.location,
@@ -45,14 +53,12 @@ class BookingDetails extends StatelessWidget {
               ),
             ),
             const TextFieldSpacing(),
-            // CustomElevatedButton(
-            //   onPressed: () {
-            //     Navigator.of(context).push(MaterialPageRoute(
-            //       builder: (context) => AdressTaking(servicers: servicers),
-            //     ));
-            //   },
-            //   buttonText: 'Book Now',
-            // ),
+            CustomElevatedButton(
+              onPressed: () {
+               
+              },
+              buttonText: 'Check Payment Status',
+            ),
           ],
         ),
       ),

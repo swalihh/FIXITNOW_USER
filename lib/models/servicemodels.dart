@@ -1,19 +1,22 @@
 class ServicersModel {
-  final dynamic id;//
-  final dynamic username;//
+  final dynamic id;
+  final dynamic username;
   final dynamic email;
-  final String phone;//
+  final String phone;
   final dynamic password;
   final dynamic otp;
-  final String fullname;//
-  final String description;//
-  final String serviceCategory;//
+  final String fullname;
+  final String description;
+  final String serviceCategory;
   final dynamic verificationDocument;
-  final double amount;//
-  final String location;//
+  final double amount;
+  final String location;
   final String servicerImage;
-  final dynamic servicerDocument;//
+  final dynamic servicerDocument;
   final dynamic status;
+  final dynamic date; // Added field
+  final dynamic time; // Added field
+  final dynamic serviceAmount; // Added field
 
   ServicersModel({
     required this.id,
@@ -31,27 +34,34 @@ class ServicersModel {
     required this.servicerImage,
     required this.servicerDocument,
     required this.status,
+    required this.date,
+    required this.time,
+    required this.serviceAmount,
   });
 
-  factory ServicersModel.fromJson(Map<String, dynamic> json) {
-    return ServicersModel(
-      id: json['id'],
-      username: json['username'],
-      email: json['email'],
-      phone: json['phone'],
-      password: json['password'],
-      otp: json['otp'],
-      fullname: json['fullname'],
-      description: json['description'],
-      serviceCategory: json['servicecatagory'],
-      verificationDocument: json['verificationdocument'],
-      amount: json['amount'].toDouble(),
-      location: json['location'],
-      servicerImage: json['servicerimage'],
-      servicerDocument: json['servicerdocument'],
-      status: json['status'],
-    );
-  }
+factory ServicersModel.fromJson(Map<String, dynamic> json) {
+  return ServicersModel(
+    id: json['id'],
+    username: json['username'],
+    email: json['email'],
+    phone: json['phone'],
+    password: json['password'],
+    otp: json['otp'],
+    fullname: json['fullname'],
+    description: json['description'],
+    serviceCategory: json['servicecatagory'],
+    verificationDocument: json['verificationdocument'],
+    amount: json['amount']?.toDouble() ?? 0.0, // Handle null by providing a default value
+    location: json['location'],
+    servicerImage: json['servicerimage'],
+    servicerDocument: json['servicerdocument'],
+    status: json['status'],
+    date: json['date'],
+    time: json['time'],
+    serviceAmount: json['serviceamount']?.toDouble() ?? 0.0, // Handle null by providing a default value
+  );
+}
+
 
   Map<String, dynamic> toJson() {
     return {
@@ -70,6 +80,9 @@ class ServicersModel {
       'servicerimage': servicerImage,
       'servicerdocument': servicerDocument,
       'status': status,
+      'date': date,
+      'time': time,
+      'serviceamount': serviceAmount,
     };
   }
 }

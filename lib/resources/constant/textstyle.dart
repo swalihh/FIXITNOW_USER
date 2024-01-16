@@ -8,11 +8,18 @@ class AppText {
         fontWeight: FontWeight.w500,
         fontFamily: 'Poppins',
         color:AppColors.whiteColor,
-        overflow: TextOverflow.ellipsis
+        overflow: TextOverflow.ellipsis   
       );
   static TextStyle get smallDark => const TextStyle(
         fontSize: 12,
         color: AppColors.whiteColor,
+        overflow: TextOverflow.ellipsis
+
+      );
+        static TextStyle get smallBlack => const TextStyle(
+        fontSize: 14,
+        fontWeight: FontWeight.w600,
+        color: Color.fromARGB(255, 0, 0, 0),
         overflow: TextOverflow.ellipsis
 
       );
@@ -37,6 +44,12 @@ class AppText {
         fontWeight: FontWeight.w400,
         color: AppColors.whiteColor,
         overflow: TextOverflow.ellipsis
+
+      );
+            static TextStyle get smalldestext => const TextStyle(
+        fontSize: 15,
+        fontWeight: FontWeight.w400,
+        color: AppColors.whiteColor,
 
       );
          static TextStyle get labeltextbig => const TextStyle(
@@ -102,6 +115,14 @@ class AppText {
         fontWeight: FontWeight.w500,
         
         color: AppColors.whiteColor,
+        
+      );
+
+               static TextStyle get versionName =>  GoogleFonts.silkscreen(
+        fontSize: 15,
+        fontWeight: FontWeight.w500,
+        
+        color:const Color.fromARGB(158, 255, 255, 255),
         
       );
 }
