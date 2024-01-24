@@ -10,6 +10,7 @@ import 'package:userapp/resources/widgets/saved/job_detail_forsaved.dart';
 import 'package:userapp/resources/widgets/saved/location_saved.dart';
 import 'package:userapp/resources/widgets/textfieldspace.dart';
 
+// ignore: must_be_immutable
 class Savedview extends StatelessWidget {
   final SavedModel servicers;
   int? index;

@@ -32,26 +32,33 @@ class BookingRepo {
   EitherResponse getElectritions() async {
     return await ApiServices.getApi(AppUrl.getElectritions);
   }
-  
+
   EitherResponse getpaintings() async {
     return await ApiServices.getApi(AppUrl.getpainting);
   }
-    EitherResponse getcleaning() async {
+
+  EitherResponse getcleaning() async {
     return await ApiServices.getApi(AppUrl.getcleaning);
   }
 
-  EitherResponse getcooking()async{
+  EitherResponse getcooking() async {
     return await ApiServices.getApi(AppUrl.getcooking);
   }
-  EitherResponse getothers()async{
+
+  EitherResponse getothers() async {
     return await ApiServices.getApi(AppUrl.getothers);
   }
 
-
-  EitherResponse updateProfile(var rawData)async{
-    return await ApiServices.putApi(AppUrl.updateProfile+userId.toString(), rawData);
+  EitherResponse updateProfile(var rawData) async {
+    return await ApiServices.putApi(
+        AppUrl.updateProfile + userId.toString(), rawData);
   }
-    EitherResponse getAllServicers()async{
+
+  EitherResponse getAllServicers() async {
     return await ApiServices.getApi(AppUrl.getAllservicers);
   }
+
+  EitherResponse getPaymentData(bookingId) async{
+  return await ApiServices.getApi("${AppUrl.getPaymentData}user_id=$userId&booking_id=$bookingId");
+}
 }

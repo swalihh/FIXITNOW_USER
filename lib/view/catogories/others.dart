@@ -7,6 +7,7 @@ import 'package:userapp/resources/constant/textstyle.dart';
 import 'package:userapp/resources/widgets/catogoriescard.dart';
 import 'package:userapp/resources/widgets/customappbar.dart';
 import 'package:userapp/view/catogories/book/servicerview.dart';
+import 'package:userapp/view/home/search.dart';
 
 // ignore: must_be_immutable
 class Others extends StatelessWidget {
@@ -25,6 +26,9 @@ class Others extends StatelessWidget {
             'Cleaning',
             style: AppText.labeltext,
           ),
+            showIconButton: true,
+      onEditPressed: () =>Navigator.of(context).push(MaterialPageRoute(builder: (context) => SearchPage(),)) ,
+
         ),
         backgroundColor: AppColors.primaryColor,
         body: Padding(

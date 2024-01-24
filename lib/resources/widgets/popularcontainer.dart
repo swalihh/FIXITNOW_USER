@@ -54,7 +54,7 @@ class CustomCardWidget extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Container(
+                      SizedBox(
                         width: screenSize.width * 0.3 - 30,
                         child: Text(
                           jobName,

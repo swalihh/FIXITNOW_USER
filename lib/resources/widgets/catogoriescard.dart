@@ -12,7 +12,7 @@ class CategoriesCard extends StatelessWidget {
   final VoidCallback? onTap;
   final List<Widget>? dynamicWidgets;
 
-  CategoriesCard({
+  const CategoriesCard({super.key, 
     required this.imageUrl,
     required this.name,
     required this.jobName,

@@ -17,22 +17,17 @@ class ApiServices {
     final uri = Uri.parse(url);
     final body = jsonEncode(rawData);
     try {
-     print("$body is this body ? ------------------------\n$uri uri -------------------------------------,\n$_headers headers --------------");
       final response = await http.post(uri, body: body,headers: _headers);
-      print('row data ----------------post------------response');
-      print(response.body);
       fetchedData = _getResponse(response);
      
 
       
       return Right(fetchedData);
     } on SocketException {
-      print('socket ');
       return Left(InternetException());
     } on http.ClientException {
       return Left(RequestTimeOUtException());
     } catch (e) {
-      print(e);
       return Left(BadRequestException());
     }
   }
@@ -44,21 +39,17 @@ class ApiServices {
     }
     dynamic fetchedData;
     try {
-      print('$uri=============geting saved');
       
       // print("$userId userID ----------------------------$uri urls_______________________________________--");
       final response = await http.get(uri, headers: _headers);
-           print(response.body);
 
       fetchedData = _getResponse(response);
       return Right(fetchedData);
     } on SocketException {
-      print('socket');
       return Left(InternetException());
     } on http.ClientException {
       return Left(RequestTimeOUtException());
     } catch (e) {
-      print("$e  requesttype");
       return Left(BadRequestException());
     }
   }
@@ -88,10 +79,8 @@ class ApiServices {
     dynamic fetchedData;
 
     try {
-      print('============$uri=============delurl==');
       final response = await http.delete(uri, headers: _headers);
       fetchedData = _getResponse(response);
-      print(fetchedData.body);
       return Right(fetchedData);
     } on SocketException {
       return Left(InternetException());
@@ -122,21 +111,17 @@ class ApiServices {
     final uri = Uri.parse(url);
     try {
       final response = await http.post(uri,headers: _headers);
-      print('=========$uri============uri');
-      print('row data ----------------post------------response');
-      print(response.body);
+     
       fetchedData = _getResponse(response);
      
 
       
       return Right(fetchedData);
     } on SocketException {
-      print('socket ');
       return Left(InternetException());
     } on http.ClientException {
       return Left(RequestTimeOUtException());
     } catch (e) {
-      print(e);
       return Left(BadRequestException());
     }
   }
@@ -145,18 +130,14 @@ class ApiServices {
     dynamic fetchedData;
 
     try {
-      print('============$uri=============delurl==');
       final response = await http.delete(uri,);
       fetchedData = _getResponse(response);
-      print(fetchedData);
       return Right(fetchedData);
     } on SocketException {
       return Left(InternetException());
     } on http.ClientException {
       return Left(RequestTimeOUtException());
     } catch (e) {
-      print('in delete=========');
-      print(e);
       return Left(BadRequestException());
     }
   }
@@ -167,20 +148,15 @@ class ApiServices {
     final uri = Uri.parse(url);
     final body = jsonEncode(rawData);
     try {
-      print("$body is this body ? ------------------------\n$uri uri -------------------------------------,\n$_headers headers --------------");
       final response = await http.put(uri, body: body, headers: _headers);
-      print('row data ----------------put------------response');
-      print(response.body);
       fetchedData = _getResponse(response);
 
       return Right(fetchedData);
     } on SocketException {
-      print('socket ');
       return Left(InternetException());
     } on http.ClientException {
       return Left(RequestTimeOUtException());
     } catch (e) {
-      print(e);
       return Left(BadRequestException());
     }
   }

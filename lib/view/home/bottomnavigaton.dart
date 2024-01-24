@@ -3,7 +3,7 @@ import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:userapp/resources/constant/colors.dart';
 import 'package:userapp/view/home/booking.dart';
 import 'package:userapp/view/home/home.dart';
-import 'package:userapp/view/home/profile.dart';
+import 'package:userapp/view/home/profile/profile.dart';
 import 'package:userapp/view/home/saved.dart';
 
 class Start extends StatefulWidget {

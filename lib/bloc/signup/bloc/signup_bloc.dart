@@ -29,10 +29,9 @@ class SignupBloc extends Bloc<SignupEvent, SignupState> {
 
     data.fold((error) => emit(SignupErrorState(message: error.message)),
         (responce) {
-      print(responce);
       otpFromApi = int.parse(responce['otp'].toString());
       id = responce['id'];  
-
+print(otpFromApi);  
       Sharedprfe.instance.storage(id);
 
       emit(SignupSuccessState());

@@ -18,10 +18,9 @@ class UserBloc extends Bloc<UserEvent, UserState> {
     userDetails
         .fold((error) => emit(UserDataFetchErrorState(message: error.message)),
             (responce) {
-              print(responce);
-      final Rawdata = responce['data'];
+      final rawdata = responce['data'];
 
-      final UserModel user = UserModel.fromJson(Rawdata);
+      final UserModel user = UserModel.fromJson(rawdata);
       emit(UserDataLoadingState());
       emit(UserDataFetchSuccessState(user: user));
     });

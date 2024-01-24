@@ -26,4 +26,6 @@ class PopularserBloc extends Bloc<PopularserEvent, PopularserState> {
       emit(GetPopularServiceDataSuccessState(popular: popularList));
     });
   }
+
+
 }

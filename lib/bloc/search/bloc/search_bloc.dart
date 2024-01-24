@@ -18,7 +18,7 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
     List<String> categories = [];
     double priceRange;
 
-    priceRange = event.priceRange == null ? 15000 : event.priceRange!;
+    priceRange = event.priceRange == null ? 1500 : event.priceRange!;
 
     if (event.servicersList.isEmpty) {
       categories = [

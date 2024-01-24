@@ -14,9 +14,10 @@ class ServicersModel {
   final String servicerImage;
   final dynamic servicerDocument;
   final dynamic status;
-  final dynamic date; // Added field
-  final dynamic time; // Added field
-  final dynamic serviceAmount; // Added field
+  final dynamic date; 
+  final dynamic time; 
+  final dynamic serviceAmount;
+  final dynamic bookingId; 
 
   ServicersModel({
     required this.id,
@@ -37,31 +38,32 @@ class ServicersModel {
     required this.date,
     required this.time,
     required this.serviceAmount,
+    required this.bookingId, 
   });
 
-factory ServicersModel.fromJson(Map<String, dynamic> json) {
-  return ServicersModel(
-    id: json['id'],
-    username: json['username'],
-    email: json['email'],
-    phone: json['phone'],
-    password: json['password'],
-    otp: json['otp'],
-    fullname: json['fullname'],
-    description: json['description'],
-    serviceCategory: json['servicecatagory'],
-    verificationDocument: json['verificationdocument'],
-    amount: json['amount']?.toDouble() ?? 0.0, // Handle null by providing a default value
-    location: json['location'],
-    servicerImage: json['servicerimage'],
-    servicerDocument: json['servicerdocument'],
-    status: json['status'],
-    date: json['date'],
-    time: json['time'],
-    serviceAmount: json['serviceamount']?.toDouble() ?? 0.0, // Handle null by providing a default value
-  );
-}
-
+  factory ServicersModel.fromJson(Map<String, dynamic> json) {
+    return ServicersModel(
+      id: json['id'],
+      username: json['username'],
+      email: json['email'],
+      phone: json['phone'],
+      password: json['password'],
+      otp: json['otp'],
+      fullname: json['fullname'],
+      description: json['description'],
+      serviceCategory: json['servicecatagory'],
+      verificationDocument: json['verificationdocument'],
+      amount: json['amount']?.toDouble() ?? 0.0,
+      location: json['location'],
+      servicerImage: json['servicerimage'],
+      servicerDocument: json['servicerdocument'],
+      status: json['status'],
+      date: json['date'],
+      time: json['time'],
+      serviceAmount: json['serviceamount']?.toDouble() ?? 0.0,
+      bookingId: json['booking_id'], 
+    );
+  }
 
   Map<String, dynamic> toJson() {
     return {
@@ -83,6 +85,7 @@ factory ServicersModel.fromJson(Map<String, dynamic> json) {
       'date': date,
       'time': time,
       'serviceamount': serviceAmount,
+      'booking_id': bookingId, 
     };
   }
 }

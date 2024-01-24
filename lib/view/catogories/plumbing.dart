@@ -27,13 +27,9 @@ class Plumbing extends StatelessWidget {
             style: AppText.labeltext,
           
           ),
-        popupMenuEntries: const [
-          PopupMenuItem(value: 'Search', child: Text('Search')),
-        ],
-        showPopupMenuButton: true,
-        onEditPressed: () {
-          Navigator.of(context).push(MaterialPageRoute(builder: (context) => SearchPage(),));
-        },
+      showIconButton: true,
+      onEditPressed: () =>Navigator.of(context).push(MaterialPageRoute(builder: (context) => SearchPage(),)) ,
+
           
         ),
         backgroundColor: AppColors.primaryColor,
@@ -68,7 +64,7 @@ class Plumbing extends StatelessWidget {
 
                       return CategoriesCard(
 
-                        amount: '₹ ${state.servicers[index].amount.toString()}',
+                        amount: '  ${state.servicers[index].amount.toString()}',
                         imageUrl: state.servicers[index].servicerImage,
                         jobName: state.servicers[index].serviceCategory,
                         name: state.servicers[index].username,

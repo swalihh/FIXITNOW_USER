@@ -50,7 +50,7 @@ class Categories extends StatelessWidget {
                   width: screenSize.width * 0.2 - 18,
                 ),
                 const SizedBox(height: 4,),
-                Text(labelText, style: AppText.averagewhite),
+                Text(labelText, style: AppText.smalldestext),
               ],
             ),
           ),

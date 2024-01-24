@@ -5,12 +5,15 @@ import 'package:userapp/bloc/Cooking/bloc/cooking_bloc.dart';
 import 'package:userapp/bloc/Electrition/bloc/electrition_bloc.dart';
 import 'package:userapp/bloc/booking/booking_bloc.dart';
 import 'package:userapp/bloc/bookinglist/bloc/bookinglist_bloc.dart';
+import 'package:userapp/bloc/location/location_bloc.dart';
 import 'package:userapp/bloc/login/login_bloc.dart';
 import 'package:userapp/bloc/others/others_bloc.dart';
 import 'package:userapp/bloc/painting/painting_bloc.dart';
+import 'package:userapp/bloc/payment/payment_bloc.dart';
 import 'package:userapp/bloc/plumbing/plumbing_bloc.dart';
 import 'package:userapp/bloc/popular/bloc/popularser_bloc.dart';
 import 'package:userapp/bloc/profileupdate/bloc/profileupdate_bloc.dart';
+import 'package:userapp/bloc/razorpay/razorpay_bloc.dart';
 import 'package:userapp/bloc/saved/bloc/saved_bloc.dart';
 import 'package:userapp/bloc/search/bloc/search_bloc.dart';
 import 'package:userapp/bloc/servicers/bloc/servicers_bloc.dart';
@@ -50,6 +53,9 @@ class MyApp extends StatelessWidget {
       BlocProvider(create: (context) => CookingBloc(),),
       BlocProvider(create: (context) => OthersBloc(),),
       BlocProvider(create: (context) => ProfileupdateBloc(),),
+      BlocProvider(create: (context) => LocationBloc(),),
+      BlocProvider(create: (context) => PaymentBloc(),),
+       BlocProvider(create: (context) => RazorpayBloc(),),
     ],
       child: const MaterialApp(
         debugShowCheckedModeBanner: false,

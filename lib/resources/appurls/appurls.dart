@@ -17,6 +17,12 @@ class AppUrl {
   static const String getothers = '$_baseUrl/others';
   static const String updateProfile = '$_baseUrl/update/';
   static const String getAllservicers = '$_baseUrl/serivicers';
+  static const String getPaymentData = '$_baseUrl/get-booking-details?';
+
+
+
+
+
 
 
 }

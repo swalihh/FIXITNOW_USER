@@ -6,7 +6,6 @@ import 'package:userapp/resources/constant/textstyle.dart';
 import 'package:userapp/resources/strings/hometext.dart';
 import 'package:userapp/resources/widgets/catogoriescard.dart';
 import 'package:userapp/resources/widgets/customappbar.dart';
-import 'package:userapp/resources/widgets/saved/job_detail_forsaved.dart';
 import 'package:userapp/resources/widgets/saved/savedview.dart';
 
 

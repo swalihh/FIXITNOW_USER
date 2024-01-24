@@ -10,6 +10,7 @@ import 'package:userapp/resources/widgets/servicerbookwidget.dart';
 import 'package:userapp/resources/widgets/textfieldspace.dart';
 import 'package:userapp/view/catogories/book/addresscolect.dart';
 
+// ignore: must_be_immutable
 class ServicerBook extends StatelessWidget {
   final ServicersModel servicers;
   int index;
@@ -35,7 +36,7 @@ class ServicerBook extends StatelessWidget {
                      return JobDetailsWidget(
                       savedModel: state.savedList,
                     servicers: servicers,
-                    index: index!,
+                    index: index,
                     jobName: servicers.serviceCategory,
                     amount: '₹${servicers.amount.toString()}',
                     location: servicers.location,

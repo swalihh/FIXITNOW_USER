@@ -1,11 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:userapp/bloc/Cleaning/bloc/cleaning_bloc.dart';
+import 'package:userapp/bloc/Cooking/bloc/cooking_bloc.dart';
+import 'package:userapp/bloc/Electrition/bloc/electrition_bloc.dart';
 import 'package:userapp/bloc/bookinglist/bloc/bookinglist_bloc.dart';
 import 'package:userapp/bloc/login/login_bloc.dart';
+import 'package:userapp/bloc/others/others_bloc.dart';
+import 'package:userapp/bloc/painting/painting_bloc.dart';
 import 'package:userapp/bloc/plumbing/plumbing_bloc.dart';
+import 'package:userapp/bloc/popular/bloc/popularser_bloc.dart';
 import 'package:userapp/bloc/saved/bloc/saved_bloc.dart';
 import 'package:userapp/bloc/servicers/bloc/servicers_bloc.dart';
 import 'package:userapp/bloc/signup/bloc/signup_bloc.dart';
+import 'package:userapp/bloc/user/user_bloc.dart';
 import 'package:userapp/resources/constant/colors.dart';
 import 'package:userapp/resources/constant/textstyle.dart';
 import 'package:userapp/resources/strings/opening.dart';
@@ -19,6 +26,7 @@ import 'package:userapp/utils/validations.dart';
 import 'package:userapp/view/home/bottomnavigaton.dart';
 import 'package:userapp/view/signup/otp.dart';
 
+// ignore: must_be_immutable
 class Register extends StatelessWidget {
   Register({Key? key}) : super(key: key);
   TextEditingController nameController = TextEditingController();
@@ -110,6 +118,24 @@ class Register extends StatelessWidget {
                                           context, state.message);
                                     } else if (state is UserLoginSuccessState) {
                                       context
+                                          .read<ServicersBloc>()
+                                          .add(FetchAllServicersEvent());
+                                      context
+                                          .read<CleaningBloc>()
+                                          .add(GetAllCleaningEvent());
+                                      context
+                                          .read<ElectritionBloc>()
+                                          .add(GetAllElectritonsEvent());
+                                      context
+                                          .read<CookingBloc>()
+                                          .add(FetchAllCookingDataEvent());
+                                      context
+                                          .read<OthersBloc>()
+                                          .add(GetOtherServicersEvent());
+                                      context
+                                          .read<PaintingBloc>()
+                                          .add(GetAllPainterEvent());
+                                      context
                                           .read<PlumbingBloc>()
                                           .add(PlumberDetailsFetchEvent());
                                       context
@@ -121,11 +147,18 @@ class Register extends StatelessWidget {
                                       context
                                           .read<ServicersBloc>()
                                           .add(FetchAllServicersEvent());
+                                      context
+                                          .read<PopularserBloc>()
+                                          .add(GetPopularServiceData());
+                                      context
+                                          .read<UserBloc>()
+                                          .add(UserDataFetchEvent());
 
-                                      Navigator.of(context)
-                                          .pushReplacement(MaterialPageRoute(
-                                        builder: (context) => const Start(),
-                                      ));
+                                      Navigator.of(context).pushAndRemoveUntil(
+                                          MaterialPageRoute(
+                                            builder: (context) => const Start(),
+                                          ),
+                                          (route) => false);
                                     }
                                   },
                                   builder: (context, state) {
@@ -223,6 +256,10 @@ class Register extends StatelessWidget {
                               BlocConsumer<SignupBloc, SignupState>(
                                 listener: (context, state) {
                                   if (state is SignupSuccessState) {
+                                    context
+                                        .read<UserBloc>()
+                                        .add(UserDataFetchEvent());
+
                                     Navigator.of(context)
                                         .push(MaterialPageRoute(
                                       builder: (context) => Otp(),

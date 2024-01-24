@@ -6,9 +6,9 @@ import 'package:userapp/models/servicemodels.dart';
 import 'package:userapp/resources/constant/colors.dart';
 import 'package:userapp/resources/constant/textstyle.dart';
 import 'package:userapp/resources/widgets/customappbar.dart';
-import 'package:userapp/resources/widgets/customelevatedbutton.dart';
 import 'package:userapp/resources/widgets/customtextfield.dart';
 import 'package:userapp/resources/widgets/descriptiontextfield.dart';
+import 'package:userapp/resources/widgets/loadingbutton.dart';
 import 'package:userapp/resources/widgets/textfieldspace.dart';
 import 'package:userapp/utils/Customsnackbar.dart';
 import 'package:userapp/utils/calender.dart';
@@ -86,10 +86,6 @@ class _AdressTakingState extends State<AdressTaking> {
                   onDateSelected: (date) {
                     setState(() {
                       selectedDate = date;
-                 print('--------------------------');
-                      print(selectedDate);
-          
-
                     });
                   },
                 ),
@@ -103,24 +99,37 @@ class _AdressTakingState extends State<AdressTaking> {
                 const TextFieldSpacingBig(),
                 BlocConsumer<BookingBloc, BookingState>(
                   listener: (context, state) {
-                    if(state is ServiceBookingSuccessState){
-                  CustomSnackBar.showCustomSnackBar(context, 'Successfully Booked');
+                    if (state is ServiceBookingSuccessState) {
+                      CustomSnackBar.showCustomSnackBar(
+                          context, 'Successfully Booked');
 
-                     context.read<BookinglistBloc>().add(GetAllBookingDetailsEvent());
+                      context
+                          .read<BookinglistBloc>()
+                          .add(GetAllBookingDetailsEvent());
 
-                      Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => Start(),));
-                    }else if(state is ServiceBookingErrorState){
-                      print(state.message);
-                    } 
+                      Navigator.of(context).pushReplacement(MaterialPageRoute(
+                        builder: (context) => const Start(),
+                      ));
+                    } else if (state is ServiceBookingErrorState) {
+                      CustomSnackBar.showCustomSnackBar(context, state.message);
+                    }
                   },
                   builder: (context, state) {
-                    return CustomElevatedButton(
+                    bool isLoading=state is ServiceBookingLoadingState;
+                    return Loadingbutton(
+                      showloader: isLoading,
                       onPressed: () {
                         validations();
                       },
                       buttonText: 'Book Now',
                     );
-                  },
+                  //   return CustomElevatedButton(
+                  //     onPressed: () {
+                  //       validations();
+                  //     },
+                  //     buttonText: 'Book Now',
+                  //   );
+                   },
                 ),
               ],
             ),
@@ -131,10 +140,7 @@ class _AdressTakingState extends State<AdressTaking> {
   }
 
   validations() {
-
     if (bookingKey.currentState!.validate()) {
-      print('==============================');
-      print(selectedDate);
       Map<String, dynamic> useraddress = {
         "buildingname": houseController.text,
         "city": cityController.text,
@@ -149,8 +155,10 @@ class _AdressTakingState extends State<AdressTaking> {
       context.read<BookingBloc>().add(ServiceBookEvent(map: useraddress));
     }
   }
+
   String formatDate(DateTime date) {
-  final DateFormat formatter = DateFormat('yyyy-MM-dd'); // Customize the format as needed
-  return formatter.format(date).toString();
-}
+    final DateFormat formatter =
+        DateFormat('yyyy-MM-dd'); // Customize the format as needed
+    return formatter.format(date).toString();
+  }
 }

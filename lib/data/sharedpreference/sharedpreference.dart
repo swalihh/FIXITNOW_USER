@@ -18,7 +18,6 @@ storage(int id)async{
 }
 getstorage(){
   var id=  prefs.getInt("data");
-   print('in storage $id');
   return id;
 
 }

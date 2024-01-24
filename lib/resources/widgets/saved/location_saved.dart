@@ -75,7 +75,7 @@ class _AdressTakingState extends State<AdressTakingSaved> {
                 ),
                 const TextFieldSpacing(),
                 SignUpTextField(
-                  validator: (p0) => Validations.isNumber(p0, 'Phine'),
+                  validator: (p0) => Validations.isNumber(p0, 'Phone'),
                   controller: phoneController,
                   keyboardType: TextInputType.phone,
                   hintText: 'Phone',
@@ -86,9 +86,7 @@ class _AdressTakingState extends State<AdressTakingSaved> {
                   onDateSelected: (date) {
                     setState(() {
                       selectedDate = date;
-                 print('--------------------------');
-                      print(selectedDate);
-          
+              
 
                     });
                   },
@@ -108,9 +106,8 @@ class _AdressTakingState extends State<AdressTakingSaved> {
 
                      context.read<BookinglistBloc>().add(GetAllBookingDetailsEvent());
 
-                      Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => Start(),));
+                      Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => const Start(),));
                     }else if(state is ServiceBookingErrorState){
-                      print(state.message);
                     } 
                   },
                   builder: (context, state) {
@@ -133,8 +130,6 @@ class _AdressTakingState extends State<AdressTakingSaved> {
   validations() {
 
     if (bookingKey.currentState!.validate()) {
-      print('==============================');
-      print(selectedDate);
       Map<String, dynamic> useraddress = {
         "buildingname": houseController.text,
         "city": cityController.text,

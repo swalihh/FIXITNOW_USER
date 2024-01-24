@@ -8,6 +8,7 @@ import 'package:userapp/resources/widgets/customappbar.dart';
 import 'package:userapp/resources/widgets/filter_custom_widget.dart';
 import 'package:userapp/view/catogories/book/servicerview.dart';
 
+// ignore: must_be_immutable
 class SearchPage extends StatelessWidget {
   ValueNotifier<bool> filterVisibility = ValueNotifier(false);
   // final List<RoomsModel> totalRooms;
@@ -19,7 +20,7 @@ class SearchPage extends StatelessWidget {
 
   ValueNotifier<String> queryNotifier = ValueNotifier('');
 
-  ValueNotifier<double> selectedPrice = ValueNotifier(15000);
+  ValueNotifier<double> selectedPrice = ValueNotifier(1500);
 
   // List<RoomsModel>? filteredRooms;
 
@@ -76,6 +77,7 @@ class SearchPage extends StatelessWidget {
                   child: InkWell(
                     onTap: () {
                       filterVisibility.value = !filterVisibility.value;
+                      // ignore: invalid_use_of_protected_member, invalid_use_of_visible_for_testing_member
                       filterVisibility.notifyListeners();
                     },
                     child: Container(

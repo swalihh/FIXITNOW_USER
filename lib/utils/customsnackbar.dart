@@ -12,11 +12,11 @@ class CustomSnackBar {
   static SnackBar _buildCustomSnackBar(String message) {
     return SnackBar(
       behavior: SnackBarBehavior.floating,
-      padding: EdgeInsets.only(bottom: 5),
+      padding: const EdgeInsets.only(bottom: 5),
       backgroundColor: AppColors.whiteColor,
       content: Padding(
         padding: const EdgeInsets.all(8.0),
-        child: Container(
+        child: SizedBox(
           height: 25,
           width: double.infinity,
           child: Padding(

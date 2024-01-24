@@ -5,6 +5,7 @@ import 'package:userapp/resources/constant/colors.dart';
 import 'package:userapp/resources/constant/textstyle.dart';
 import 'package:userapp/resources/widgets/book_mark_widget.dart';
 
+// ignore: must_be_immutable
 class JobDetailsWidget extends StatelessWidget {
   final String jobName;
   final String name;

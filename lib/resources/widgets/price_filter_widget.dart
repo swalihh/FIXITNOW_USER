@@ -41,7 +41,6 @@ class PriceFilterWidget extends StatelessWidget {
                     value: value,
                     onChanged: (newValue) {
                       selectedPrice.value = newValue;
-
                       // ignore: invalid_use_of_protected_member, invalid_use_of_visible_for_testing_member
                       selectedPrice.notifyListeners();
                     },
@@ -51,7 +50,7 @@ class PriceFilterWidget extends StatelessWidget {
             ),
             const Expanded(
               flex: 2,
-              child: Text('₹15000',style: TextStyle(color: Colors.white),)
+              child: Text('₹1500',style: TextStyle(color: Colors.white),)
             ),
           ],
         ),

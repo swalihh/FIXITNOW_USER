@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:userapp/bloc/location/location_bloc.dart';
 import 'package:userapp/bloc/popular/bloc/popularser_bloc.dart';
 import 'package:userapp/bloc/saved/bloc/saved_bloc.dart';
 import 'package:userapp/bloc/search/bloc/search_bloc.dart';
@@ -27,34 +28,47 @@ class Home extends StatelessWidget {
     return Scaffold(
       backgroundColor: AppColors.primaryColor,
       body: SingleChildScrollView(
-        physics: const BouncingScrollPhysics(),
         child: Padding(
           padding: const EdgeInsets.all(22.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const TextFieldSpacingAverage(),
-              Row(
-                children: [
-                  const Icon(
-                    color: AppColors.whiteColor,
-                    Icons.location_city,
-                  ),
-                  SizedBox(
-                    width: screenSize.width * 0.02,
-                  ),
-                  Text(
-                    'Kinfra calicut',
-                    style: AppText.smallDark,
-                  ),
-                  SizedBox(
-                    width: screenSize.width * 0.4 - 20,
-                  ),
-                  Text(
-                    HomeString.appName,
-                    style: AppText.appname,
-                  )
-                ],
+              BlocConsumer<LocationBloc, LocationState>(
+                listener: (context, state) {
+                  
+                },
+                builder: (context, state) {
+                  return Row(
+                    children: [
+                      // GestureDetector(
+                      //   onTap: () {
+                      //     context.read<LocationBloc>().add(GeoLocatorClicked());
+                      //   },
+                      //   child: const Icon(
+                      //     color: AppColors.whiteColor,
+                      //     Icons.location_city,
+                      //   ),
+                      // ),
+                      // SizedBox(
+                      //   width: screenSize.width * 0.02,
+                      // ),
+                      // Text(
+                      //   'Kinfra calicut',
+                      //   style: AppText.smallDark,
+                      // ),
+                      // SizedBox(
+                      //   width: screenSize.width * 0.4 - 20,
+                      // ),
+                      const Icon(Icons.handyman_outlined,color: AppColors.whiteColor,),
+                      const SizedBox(width: 5,),
+                      Text(
+                        HomeString.appName,
+                        style: AppText.appname,
+                      )
+                    ],
+                  ); 
+                },
               ),
               const TextFieldSpacing(),
               Container(
@@ -63,7 +77,7 @@ class Home extends StatelessWidget {
                 decoration: BoxDecoration(
                     image: const DecorationImage(
                         fit: BoxFit.cover,
-                        image: AssetImage("asset/images/4.jpg")),
+                        image: AssetImage("asset/images/B2.jpg")),
                     color: AppColors.accentColor,
                     borderRadius: BorderRadius.circular(5)),
               ),
@@ -73,9 +87,10 @@ class Home extends StatelessWidget {
                 children: [
                   InkWell(
                     onTap: () {
-                     context.read<SearchBloc>().add(SearchServicersEvent(query: null, servicersList: [], priceRange: null));
+                      context.read<SearchBloc>().add(SearchServicersEvent(
+                          query: null, servicersList: [], priceRange: null));
                       Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) =>  SearchPage(),
+                        builder: (context) => SearchPage(),
                       ));
                     },
                     child: Container(
@@ -103,7 +118,7 @@ class Home extends StatelessWidget {
                     child: IconButton(
                         onPressed: () {
                           Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) =>  SearchPage(),
+                            builder: (context) => SearchPage(),
                           ));
                         },
                         icon: const Icon(
@@ -181,8 +196,7 @@ class Home extends StatelessWidget {
                     HomeString.popularservice,
                     style: AppText.labeltext,
                   ),
-                  TextButton(
-                      onPressed: () {}, child: const Text(''))
+                  TextButton(onPressed: () {}, child: const Text(''))
                 ],
               ),
 
@@ -195,7 +209,7 @@ class Home extends StatelessWidget {
                         .showSnackBar(SnackBar(content: Text(state.message)));
                   }
                 }, builder: (context, state) {
-                  if (state is GetPopularServiceDataSuccessState) {
+                  if (state is GetPopularServiceDataSuccessState && state.popular.isNotEmpty) {
                     return ListView.separated(
                         scrollDirection: Axis.horizontal,
                         itemBuilder: (context, index) {
@@ -203,13 +217,12 @@ class Home extends StatelessWidget {
                           return InkWell(
                             onTap: () {
                               Navigator.of(context).push(MaterialPageRoute(
-                                builder: (context) =>
-                                    ServicerBook(servicers: popularData,index: index),
+                                builder: (context) => ServicerBook(
+                                    servicers: popularData, index: index),
                               ));
                             },
                             child: CustomCardWidget(
-
-                                amount: popularData.amount.toString(),
+                                amount:"₹ ${ popularData.amount.toString()}",
                                 backgroundImageUrl: popularData.servicerImage,
                                 jobName: popularData.serviceCategory,
                                 name: popularData.username,
@@ -223,7 +236,7 @@ class Home extends StatelessWidget {
                         },
                         itemCount: state.popular.length);
                   }
-                  return const SizedBox();
+                  return  SizedBox( child: Center(child: Text('Complete your first booking ',style: AppText.averagewhite,),),);
                 }),
               )
             ],

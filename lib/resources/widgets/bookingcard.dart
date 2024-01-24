@@ -98,7 +98,7 @@ class BookingCardWidget extends StatelessWidget {
                       height: 20,
                       width: 70,
                       decoration: BoxDecoration(
-                        color:status=='Pending'? Colors.orange:status=='Completed'?Colors.green:Colors.red,
+                     color: status == 'Pending' ? Colors.orange : status == 'Completed' ? Colors.green : status == 'Accepted' ? Colors.blueAccent : Colors.red,
                         borderRadius: BorderRadius.circular(3),
                       ),
                       child: Text(
@@ -106,7 +106,7 @@ class BookingCardWidget extends StatelessWidget {
                         style: AppText.xSmall,
                       ),
                     )
-                    :SizedBox(),
+                    :const SizedBox(),
                     Text(
                       location,
                       style: AppText.xSmall,

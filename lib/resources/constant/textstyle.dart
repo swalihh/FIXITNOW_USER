@@ -109,9 +109,21 @@ class AppText {
         overflow: TextOverflow.ellipsis
 
       );
+     static const TextStyle privacyText = TextStyle(
+    fontSize: 14,
+    fontWeight: FontWeight.w400,
+    color: Colors.white,
+  );
 
          static TextStyle get appname =>  GoogleFonts.silkscreen(
         fontSize: 20,
+        fontWeight: FontWeight.w500,
+        
+        color: AppColors.whiteColor,
+        
+      );
+               static TextStyle get appnamesplash =>  GoogleFonts.silkscreen(
+        fontSize: 32,
         fontWeight: FontWeight.w500,
         
         color: AppColors.whiteColor,

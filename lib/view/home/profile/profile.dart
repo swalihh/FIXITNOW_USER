@@ -13,6 +13,9 @@ import 'package:userapp/resources/widgets/textfieldspace.dart';
 import 'package:userapp/utils/customalertbox.dart';
 import 'package:userapp/utils/customsnackbar.dart';
 import 'package:userapp/utils/validations.dart';
+import 'package:userapp/view/home/profile/appinfo.dart';
+import 'package:userapp/view/home/profile/help.dart';
+import 'package:userapp/view/home/profile/terms_confitions.dart';
 import 'package:userapp/view/signup/opening.dart';
 
 class Profile extends StatelessWidget {
@@ -254,21 +257,31 @@ class Profile extends StatelessWidget {
                   borderRadius: BorderRadius.circular(5)),
               child: Column(
                 children: [
-                  const ListTileWidget(
-                    icon: Icons.edit_attributes_outlined,
+                  ListTileWidget(
+                    onTap: () => Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => const TermsAndConditions(),
+                    )),
+                    icon: Icons.gavel_sharp,
                     isVisible: true,
-                    title: 'Update profile',
+                    title: 'Privacy Policy',
                   ),
-                  const ListTileWidget(
+                  ListTileWidget(
+                    onTap: () => Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => const Help(),
+                    )),
+                    icon: Icons.help_center_outlined,
+                    isVisible: true,
+                    title: 'App Help',
+                  ),
+                  ListTileWidget(
+                    onTap: () => Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => const AppInfo(),
+                    )),
                     icon: Icons.info_outline,
                     isVisible: true,
                     title: 'App Info',
                   ),
-                  const ListTileWidget(
-                    icon: Icons.gavel_sharp,
-                    isVisible: true,
-                    title: 'Terms & Conditions',
-                  ),
+                  
                   ListTileWidget(
                     icon: Icons.logout_rounded,
                     isVisible: true,

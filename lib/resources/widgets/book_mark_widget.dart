@@ -5,6 +5,7 @@ import 'package:userapp/models/savedmodel.dart';
 import 'package:userapp/models/servicemodels.dart';
 import 'package:userapp/resources/constant/colors.dart';
 
+// ignore: must_be_immutable
 class BookMarkWidget extends StatefulWidget {
   BookMarkWidget(
       {super.key, required this.serviceModel, required this.savedList});
@@ -30,9 +31,7 @@ class _BookMarkWidgetState extends State<BookMarkWidget> {
             .toList(growable: false)
         : [];
 
-    print(
-        'this is lenght 8888888888888888888822222222222222222222222222222222222222');
-    print(widget.tempSavedModel.length);
+
   }
 
   @override
@@ -42,9 +41,9 @@ class _BookMarkWidgetState extends State<BookMarkWidget> {
         InkWell(
             onTap: () {
               bookMarkVisibility.value = !bookMarkVisibility.value;
+              // ignore: invalid_use_of_protected_member, invalid_use_of_visible_for_testing_member
               bookMarkVisibility.notifyListeners();
               if (bookMarkVisibility.value) {
-                print('in adding ******************');
 
                 context
                     .read<SavedBloc>()

@@ -24,7 +24,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
     data.fold((error) => emit(UserLoginErrorState(message: error.message)),
         (responce) {
       id = responce['id'];
-      print(id);
+      // print(id);
       Sharedprfe.instance.storage(id);
    //   userBloc.add(UserDataFetchEvent());
 

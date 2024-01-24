@@ -48,7 +48,7 @@ class SearchFilterWidget extends StatelessWidget {
                     height: 8,
                   ),
                   PriceFilterWidget(
-                    maxPrice: 15000,
+                    maxPrice: 1500,
                     minPrice: 100,
                     selectedPrice: selectedPrice,
                   ),

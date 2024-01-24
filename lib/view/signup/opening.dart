@@ -18,7 +18,7 @@ class Opening extends StatelessWidget {
         body: Column(
           children: [
             Container(
-              height: screenSize.height*0.6-20,
+              height: screenSize.height*0.6-38,
               width: double.maxFinite,
               decoration: const BoxDecoration(
                 image: DecorationImage(

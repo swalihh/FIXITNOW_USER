@@ -10,7 +10,7 @@ class ServiceDetailsCard extends StatelessWidget {
   final String amount;
   final String description;
 
-  const ServiceDetailsCard({
+  const ServiceDetailsCard({super.key, 
     required this.backgroundImageUrl,
     required this.jobName,
     required this.workerName,
@@ -46,7 +46,7 @@ class ServiceDetailsCard extends StatelessWidget {
             padding: const EdgeInsets.all(8.0),
             child: Row(
               children: [
-                Container(
+                SizedBox(
                   height: screenSize.height * 0.1,
                   width: screenSize.width * 0.6 - 25,
                   child: Column(
@@ -83,7 +83,7 @@ class ServiceDetailsCard extends StatelessWidget {
                     ],
                   ),
                 ),
-                Container(
+                SizedBox(
                   height: screenSize.height * .2,
                   width: screenSize.width * 0.2,
                   child: Column(
