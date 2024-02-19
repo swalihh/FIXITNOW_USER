@@ -57,9 +57,12 @@ class MyApp extends StatelessWidget {
       BlocProvider(create: (context) => PaymentBloc(),),
        BlocProvider(create: (context) => RazorpayBloc(),),
     ],
-      child: const MaterialApp(
+      child:  MaterialApp(
+       theme: ThemeData(
+          useMaterial3: false,
+        ),
         debugShowCheckedModeBanner: false,
-        home: Splash(),
+        home: const Splash(),
       ),
     );
   }

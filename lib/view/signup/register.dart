@@ -35,7 +35,7 @@ class Register extends StatelessWidget {
   TextEditingController passwordController = TextEditingController();
   TextEditingController loginPasswordcontroller = TextEditingController();
   TextEditingController loginMailcontroller = TextEditingController();
-  final signUpKey = GlobalKey<FormState>();
+  final signUpKey = GlobalKey<FormState>(); 
   final loginKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
@@ -133,7 +133,7 @@ class Register extends StatelessWidget {
                                           .read<OthersBloc>()
                                           .add(GetOtherServicersEvent());
                                       context
-                                          .read<PaintingBloc>()
+                                          .read<PaintingBloc>() 
                                           .add(GetAllPainterEvent());
                                       context
                                           .read<PlumbingBloc>()

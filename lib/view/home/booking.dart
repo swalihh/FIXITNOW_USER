@@ -17,83 +17,81 @@ class Bookings extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        appBar: CustomAppBar(
-          backgroundColor: AppColors.primaryColor,
-          title: Text(
-            'Bookings',
-            style: AppText.labeltext,
-          ),
-          rightText: HomeString.appName,
-          
-        ),
+    return Scaffold(
+      appBar: CustomAppBar(
         backgroundColor: AppColors.primaryColor,
-        body: Padding(
-          padding: const EdgeInsets.all(20),
-          child: BlocConsumer<BookinglistBloc, BookinglistState>(
-            listener: (context, state) {},
-            builder: (context, state) {
-              return RefreshIndicator(
-                onRefresh: () async {
-                  context
-                      .read<BookinglistBloc>()
-                      .add(GetAllBookingDetailsEvent());
-                  context.read<PopularserBloc>().add(GetPopularServiceData());
-                },
-                child: state is FetchBookingLoadingState
-                    ? const Center(
-                        child: CircularProgressIndicator(
-                        backgroundColor: AppColors.whiteColor,
-                      ))
-                    : state is FetchBookingSuccessState &&
-                            state.bookings.isNotEmpty
-                        ? ListView.separated(
-                            itemBuilder: (context, index) {
-                              final bookings = state.bookings[index];
-                              return InkWell(
-                                onTap: () {
-                                  context
-                                      .read<SavedBloc>()
-                                      .add(GetSavedEvent());
-                                  Navigator.of(context).push(
-                                    MaterialPageRoute(
-                                      builder: (context) => BookingDetails(
-                                        servicers: bookings,
-                                        index: index,
-                                      ),
+        title: Text(
+          'Bookings',
+          style: AppText.labeltext,
+        ),
+        rightText: HomeString.appName,
+        
+      ),
+      backgroundColor: AppColors.primaryColor,
+      body: Padding(
+        padding: const EdgeInsets.all(20),
+        child: BlocConsumer<BookinglistBloc, BookinglistState>(
+          listener: (context, state) {},
+          builder: (context, state) {
+            return RefreshIndicator(
+              onRefresh: () async {
+                context
+                    .read<BookinglistBloc>()
+                    .add(GetAllBookingDetailsEvent());
+                context.read<PopularserBloc>().add(GetPopularServiceData());
+              },
+              child: state is FetchBookingLoadingState
+                  ? const Center(
+                      child: CircularProgressIndicator(
+                      backgroundColor: AppColors.whiteColor,
+                    ))
+                  : state is FetchBookingSuccessState &&
+                          state.bookings.isNotEmpty
+                      ? ListView.separated(
+                          itemBuilder: (context, index) {
+                            final bookings = state.bookings[index];
+                            return InkWell(
+                              onTap: () {
+                                context
+                                    .read<SavedBloc>()
+                                    .add(GetSavedEvent());
+                                Navigator.of(context).push(
+                                  MaterialPageRoute(
+                                    builder: (context) => BookingDetails(
+                                      servicers: bookings,
+                                      index: index,
                                     ),
-                                  );
-                                },
-                                child: BookingCardWidget(
-                                  name: bookings.username,
-                                  imageUrl: bookings.servicerImage,
-                                  jobTitle: bookings.serviceCategory,
-                                  location: bookings.location,
-                                  price:
-                                      "₹ ${bookings.serviceAmount.toString()}",
-                                  status: bookings.status,
-                                ),
-                              );
-                            },
-                            separatorBuilder: (context, index) {
-                              return const SizedBox(
-                                height: 10,
-                              );
-                            },
-                            itemCount: state.bookings.length,
-                          )
-                        : Center(
-                            child: SizedBox(
-                              child: Text(
-                                'No Bookings',
-                                style: AppText.incontainer,
+                                  ),
+                                );
+                              },
+                              child: BookingCardWidget(
+                                name: bookings.username,
+                                imageUrl: bookings.servicerImage,
+                                jobTitle: bookings.serviceCategory,
+                                location: bookings.location,
+                                price:
+                                    "₹ ${bookings.serviceAmount.toString()}",
+                                status: bookings.status,
                               ),
+                            );
+                          },
+                          separatorBuilder: (context, index) {
+                            return const SizedBox(
+                              height: 10,
+                            );
+                          },
+                          itemCount: state.bookings.length,
+                        )
+                      : Center(
+                          child: SizedBox(
+                            child: Text(
+                              'No Bookings',
+                              style: AppText.incontainer,
                             ),
                           ),
-              );
-            },
-          ),
+                        ),
+            );
+          },
         ),
       ),
     );

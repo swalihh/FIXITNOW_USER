@@ -64,7 +64,7 @@ class Plumbing extends StatelessWidget {
 
                       return CategoriesCard(
 
-                        amount: '  ${state.servicers[index].amount.toString()}',
+                        amount: ' ₹ ${state.servicers[index].amount.toString()}',
                         imageUrl: state.servicers[index].servicerImage,
                         jobName: state.servicers[index].serviceCategory,
                         name: state.servicers[index].username,
