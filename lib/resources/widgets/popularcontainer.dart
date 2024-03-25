@@ -30,7 +30,7 @@ class CustomCardWidget extends StatelessWidget {
               image: NetworkImage(backgroundImageUrl),
               fit: BoxFit.cover,
             ),
-            color: Colors.lightGreen,
+            color: const Color.fromARGB(99, 158, 158, 158),
             borderRadius: BorderRadius.circular(15),
           ),
           height: screenSize.height * 0.2,
@@ -86,7 +86,7 @@ class CustomCardWidget extends StatelessWidget {
                         height: 20,
                         decoration: BoxDecoration(
                           shape: BoxShape.circle,
-                          color: Colors.amberAccent,
+                          color: const Color.fromARGB(92, 158, 158, 158),
                           image: DecorationImage(
                             image: NetworkImage(profileImageUrl),
                             fit: BoxFit.cover,

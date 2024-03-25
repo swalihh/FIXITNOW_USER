@@ -1,9 +1,7 @@
 
 import 'dart:async';
-
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:userapp/repositories/authentication.dart';
-
 part 'booking_event.dart';
 part 'booking_state.dart';
 

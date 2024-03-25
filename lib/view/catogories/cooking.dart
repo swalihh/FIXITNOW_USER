@@ -23,7 +23,7 @@ class Cooking extends StatelessWidget {
         appBar: CustomAppBar(
           backgroundColor: AppColors.primaryColor,
           title: Text(
-            'Cleaning',
+            'Cooking',
             style: AppText.labeltext,
           ),
             showIconButton: true,

@@ -22,6 +22,7 @@ class OthersBloc extends Bloc<OthersEvent, OthersState> {
         (responce) {
       final List servicersList = responce['data'];
       servicers = servicersList.map((e) => ServicersModel.fromJson(e)).toList();
+        servicers=   servicers.where((element) => element.servicerImage.isNotEmpty).toList();
       emit(GetAllOtherServicersSuccessState(servicers: servicers));
     });
   }

@@ -23,7 +23,7 @@ class Others extends StatelessWidget {
         appBar: CustomAppBar(
           backgroundColor: AppColors.primaryColor,
           title: Text(
-            'Cleaning',
+            'Others',
             style: AppText.labeltext,
           ),
             showIconButton: true,

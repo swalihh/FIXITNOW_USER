@@ -57,12 +57,12 @@ class Splash extends StatelessWidget {
     await Future.delayed(const Duration(seconds: 3));
     final id = Sharedprfe.instance.getstorage();
     if (id != null) {
+      context.read<OthersBloc>().add(GetOtherServicersEvent());
       context.read<ServicersBloc>().add(FetchAllServicersEvent());
       context.read<CleaningBloc>().add(GetAllCleaningEvent());
       context.read<PlumbingBloc>().add(PlumberDetailsFetchEvent());
       context.read<ElectritionBloc>().add(GetAllElectritonsEvent());
       context.read<CookingBloc>().add(FetchAllCookingDataEvent());
-      context.read<OthersBloc>().add(GetOtherServicersEvent());
       context.read<BookinglistBloc>().add(GetAllBookingDetailsEvent());
       context.read<PaintingBloc>().add(GetAllPainterEvent());
       context.read<SavedBloc>().add(GetSavedEvent());
